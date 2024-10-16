@@ -1,0 +1,78 @@
+<div class="w-[95%] m-auto mt-2">
+    <div routerLink="../" class="flex gap-2 cursor-pointer">
+        <svg class="my-auto" xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
+            <path d="M6 1.0125L4.99063 2.18147e-07L-2.18557e-07 5L4.99062 10L6 8.9875L2.02187 5L6 1.0125Z"
+                  fill="#0D4CD3"/>
+        </svg>
+        <span>Назад</span>
+    </div>
+
+    <div class="flex gap-x-4 mt-16">
+        <div class="w-1/6 shadow-xl shadow-bg-blue-50 rounded-md p-2 bg-white">
+            <div class="flex justify-between flex-col h-full">
+                <div>
+                    <div class="flex justify-between gap-2 mb-16">
+                        <p class="my-auto font-medium">Меню</p>
+                    </div>
+
+                    <div>
+                        <div id="triangle" class="draggable p-2 bg-[#0D4CD3] rounded-[8px] text-white text-center mb-2"
+                             draggable="true">
+                            Новый узел (Прямоугольник)
+                        </div>
+
+                        <div id="hexagon" class="draggable p-2 bg-[#0D4CD3] rounded-[8px] text-white text-center"
+                             draggable="true">
+                            Новый узел (Шестиугольник)
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button (click)="drawMode = true" [disabled]="drawMode"
+                            class="disabled:opacity-20 rounded-[8px] p-2 bg-white border-[#0D4CD3] border-2 text-[#0D4CD3] text-center w-full mb-2"
+                            id="draw-on">Вкл рисование связей
+                    </button>
+                    <button (click)="drawMode = false" [disabled]="!drawMode"
+                            class="disabled:opacity-20 rounded-[8px] p-2 bg-white border-[#0D4CD3] border-2 text-[#0D4CD3] text-center w-full mb-2"
+                            id="draw-off">Выкл рисование связей
+                    </button>
+
+                    <button (click)="saveGraph()"
+                            class="rounded-[8px] p-2 bg-white border-[#0D4CD3] border-2 text-[#0D4CD3] text-center w-full mb-2"
+                            >Сохранить граф
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="cy" class="w-full h-[800px] bg-blue-50 relative">
+            <div *ngIf="!!selectBlock" class="w-[300px] p-4 shadow-md rounded-md absolute right-4 top-4 z-50 bg-white">
+                <div class="flex justify-between gap-2">
+                    <p class="my-auto font-medium">{{selectBlock.target['_private'].data.id}}</p>
+
+                    <button (click)="closePreview()"
+                            type="button"
+                            class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
+                        <span class="sr-only">Close menu</span>
+
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="w-full">
+                    <p class="my-auto font-normal">{{selectBlock.target['_private'].data.info.name}}</p>
+                    <p class="my-auto font-normal">{{selectBlock.target['_private'].data.info.date}}</p>
+                </div>
+
+                <p (click)="removeSelected(selectBlock)" class="text-red-600 mt-24 cursor-pointer">Удалить узел</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
