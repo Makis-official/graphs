@@ -1,0 +1,398 @@
+{
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "id": "101",
+          "type": "triangle",
+          "info": {
+            "name": "Андрей",
+            "date": "04.03.1999"
+          },
+          "label": "101"
+        },
+        "position": {
+          "x": 97.19172265734852,
+          "y": 187.76227136980836
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "id": "102",
+          "type": "triangle",
+          "info": {
+            "name": "Алексей",
+            "date": "11.06.1986"
+          },
+          "label": "102"
+        },
+        "position": {
+          "x": 922.9033687947281,
+          "y": 185.67983622583895
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "id": "103",
+          "type": "hexagon",
+          "info": {
+            "name": "Nikita",
+            "date": "1729144747203"
+          },
+          "label": "103"
+        },
+        "position": {
+          "x": 296.8348892264755,
+          "y": 516.5373117022082
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "id": "104",
+          "type": "triangle",
+          "info": {
+            "name": "Nikita",
+            "date": "1729144749444"
+          },
+          "label": "104"
+        },
+        "position": {
+          "x": 791.2012994590652,
+          "y": 509.45168439736415
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "id": "105",
+          "type": "triangle",
+          "info": {
+            "name": "Nikita",
+            "date": "1729144753814"
+          },
+          "label": "105"
+        },
+        "position": {
+          "x": 791.4041386713258,
+          "y": 643.4041386713257
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "id": "106",
+          "type": "hexagon",
+          "info": {
+            "name": "Nikita",
+            "date": "1729144758678"
+          },
+          "label": "106"
+        },
+        "position": {
+          "x": 298.14417693131026,
+          "y": 633.3201637741612
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "id": "107",
+          "type": "triangle",
+          "info": {
+            "name": "Nikita",
+            "date": "1729144787672"
+          },
+          "label": "107"
+        },
+        "position": {
+          "x": 529.9999999999998,
+          "y": 326.9999999999999
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": true,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      }
+    ],
+    "edges": [
+      {
+        "data": {
+          "source": "101",
+          "target": "102",
+          "id": "0719edb7-8b0b-43c6-8116-3926cf01a96d"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "source": "102",
+          "target": "104",
+          "id": "2206a072-288a-42fc-ae91-b5ff1d65bcf7"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "source": "101",
+          "target": "103",
+          "id": "ca8cd5d8-75ed-4f65-9d55-91d579ed710f"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "source": "103",
+          "target": "106",
+          "id": "0440afde-fc40-49c5-b060-f83f54bc9c80"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "source": "104",
+          "target": "105",
+          "id": "f6de2235-5b19-4cfa-8da5-17ccf946a562"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "source": "103",
+          "target": "104",
+          "id": "5a3826eb-61df-4eb5-9384-c6f1a0a3cff0"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "source": "101",
+          "target": "107",
+          "id": "335360c7-082b-40b0-9424-1cdbc8887bb0"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      }
+    ]
+  },
+  "style": [
+    {
+      "selector": "node[type = \"triangle\"]",
+      "style": {
+        "shape": "rectangle",
+        "width": "200px",
+        "height": "100px",
+        "background-color": "rgb(255,255,255)",
+        "label": "data(label)",
+        "border-color": "rgb(51,51,51)",
+        "border-width": "2px",
+        "text-valign": "center",
+        "text-wrap": "wrap",
+        "text-max-width": "140px",
+        "text-halign": "center"
+      }
+    },
+    {
+      "selector": "node[type = \"hexagon\"]",
+      "style": {
+        "shape": "hexagon",
+        "width": "200px",
+        "height": "100px",
+        "background-color": "rgb(255,255,255)",
+        "label": "data(label)",
+        "border-color": "rgb(51,51,51)",
+        "border-width": "2px",
+        "text-valign": "center",
+        "text-wrap": "wrap",
+        "text-max-width": "140px",
+        "text-halign": "center"
+      }
+    },
+    {
+      "selector": "edge",
+      "style": {
+        "width": "2px",
+        "line-color": "rgb(204,204,204)",
+        "target-arrow-color": "rgb(204,204,204)",
+        "curve-style": "bezier",
+        "target-arrow-shape": "triangle"
+      }
+    },
+    {
+      "selector": ".eh-hover",
+      "style": {
+        "background-color": "rgb(0,0,255)"
+      }
+    },
+    {
+      "selector": ".eh-source",
+      "style": {
+        "border-width": "2px",
+        "border-color": "rgb(0,0,255)"
+      }
+    },
+    {
+      "selector": ".eh-target",
+      "style": {
+        "border-width": "2px",
+        "border-color": "rgb(0,0,255)"
+      }
+    },
+    {
+      "selector": ".eh-preview, .eh-ghost-edge",
+      "style": {
+        "background-color": "rgb(0,0,255)",
+        "line-color": "rgb(0,0,255)",
+        "color": "rgb(255,255,255)",
+        "target-arrow-color": "rgb(0,0,255)",
+        "source-arrow-color": "rgb(0,0,255)"
+      }
+    },
+    {
+      "selector": ".eh-ghost-edge.eh-preview-active",
+      "style": {
+        "opacity": "0"
+      }
+    }
+  ],
+  "data": {},
+  "zoomingEnabled": true,
+  "userZoomingEnabled": true,
+  "zoom": 0.98,
+  "minZoom": 1e-50,
+  "maxZoom": 1e+50,
+  "panningEnabled": true,
+  "userPanningEnabled": true,
+  "pan": {
+    "x": 86.36132198285927,
+    "y": -5.292084136783734
+  },
+  "boxSelectionEnabled": true,
+  "renderer": {
+    "name": "canvas"
+  }
+}

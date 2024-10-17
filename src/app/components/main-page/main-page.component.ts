@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class MainPageComponent {
 
+    public constructor() { }
+
+    public openModal: boolean = false;
 }

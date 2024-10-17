@@ -1,5 +1,5 @@
 <div class="w-[95%] m-auto mt-2">
-    <div routerLink="../" class="flex gap-2 cursor-pointer">
+    <div routerLink="../../" class="flex gap-2 cursor-pointer">
         <svg class="my-auto" xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
             <path d="M6 1.0125L4.99063 2.18147e-07L-2.18557e-07 5L4.99062 10L6 8.9875L2.02187 5L6 1.0125Z"
                   fill="#0D4CD3"/>
@@ -47,7 +47,7 @@
         </div>
 
         <div id="cy" class="w-full h-[800px] bg-blue-50 relative">
-            <div *ngIf="!!selectBlock" class="w-[300px] p-4 shadow-md rounded-md absolute right-4 top-4 z-50 bg-white">
+            <div *ngIf="!!selectBlock" class="w-[300px] p-4 shadow-md rounded-md z-50 absolute right-4 top-4 bg-white">
                 <div class="flex justify-between gap-2">
                     <p class="my-auto font-medium">{{selectBlock.target['_private'].data.id}}</p>
 
@@ -69,10 +69,69 @@
                     <p class="my-auto font-normal">{{selectBlock.target['_private'].data.info.date}}</p>
                 </div>
 
-                <p (click)="removeSelected(selectBlock)" class="text-red-600 mt-24 cursor-pointer">Удалить узел</p>
+                <div>
+                    <button (click)="openModal = true" class="rounded-[8px] px-4 py-1 bg-white border-[#0D4CD3] border-2 text-[#0D4CD3] mt-24 cursor-pointer mb-2">Изменить цвет узла</button>
+                    <button (click)="removeSelected(selectBlock)" class="rounded-[8px] px-4 py-1 bg-white border-red-600 border-2 text-red-600 cursor-pointer">Удалить узел</button>
+                </div>
             </div>
         </div>
     </div>
 
+</div>
+
+<div *ngIf="openModal" class="fixed inset-0 bg-black bg-opacity-50 z-60 flex justify-center items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-[600px]">
+
+        <div class="flex justify-between gap-16">
+            <h2 class="text-xl font-bold">Выберите цвет узла</h2>
+
+            <button (click)="openModal = false"
+                    type="button"
+                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
+                <span class="sr-only">Close menu</span>
+
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <p class="mb-16 font-medium">ID узла: {{selectBlock.target['_private'].data.id}}</p>
+
+        <div class="border-b-gray-200 border-2 p-4 flex gap-x-[64px]">
+            <div class="gap-y-2 grid">
+                <div class="w-10 h-10 bg-white border-black border-2 cursor-pointer" (click)="selectColor('white')"></div>
+                <div class="w-10 h-10 bg-blue-600 cursor-pointer" (click)="selectColor('blue')"></div>
+                <div class="w-10 h-10 bg-red-700 cursor-pointer" (click)="selectColor('red')"></div>
+                <div class="w-10 h-10 bg-amber-700 cursor-pointer" (click)="selectColor('amber')"></div>
+                <div class="w-10 h-10 bg-yellow-400 cursor-pointer" (click)="selectColor('yellow')"></div>
+                <div class="w-10 h-10 bg-green-700 cursor-pointer" (click)="selectColor('green')"></div>
+                <div class="w-10 h-10 bg-pink-700 cursor-pointer" (click)="selectColor('pink')"></div>
+            </div>
+
+            <div class="my-auto">
+                <div id="color-block"
+                     [ngClass]="{
+                        'bg-blue-600' : selectedColor === 'blue',
+                        'bg-red-700' : selectedColor === 'red',
+                        'bg-amber-700' : selectedColor === 'amber',
+                        'bg-yellow-400' : selectedColor === 'yellow',
+                        'bg-green-700' : selectedColor === 'green',
+                        'bg-pink-700' : selectedColor === 'pink',
+                     }"
+                     class="w-[200px] h-[100px] border-black border-2 text-center align-middle"
+                >
+                    <p class="mt-[35px] font-medium">Текущий цвет</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full text-center">
+            <button (click)="saveNewStyle()" class="py-2 px-4 bg-[#0D4CD3] rounded-[8px] text-white text-center mt-10">Применить изменения</button>
+        </div>
+
+    </div>
 </div>
 

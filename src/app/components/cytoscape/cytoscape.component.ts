@@ -1,123 +1,75 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import cytoscape from 'cytoscape';
 import edgehandles from 'cytoscape-edgehandles';
+import { HttpClient } from '@angular/common/http';
+import oneGraph from '../../jsonFiles/config1.json';
+import bigGraph from '../../jsonFiles/config2.json';
+import { ActivatedRoute, Router } from "@angular/router";
 
 
 @Component({
     selector: 'app-cytoscape',
     templateUrl: './cytoscape.component.html',
-    styleUrls: ['./cytoscape.component.less']
+    styleUrls: ['./cytoscape.component.less'],
 })
 export class CytoscapeComponent implements OnInit {
 
     private cy: any;
-    public id: number = 100;
+    public id: number = Date.now();
     public selectBlock: any = undefined;
     public drawMode: boolean = false;
     public typeBlock: string = '';
+    public openModal: boolean = false;
+    public selectedColor: string = '';
 
-    constructor(private el: ElementRef) { }
+    constructor(
+        private el: ElementRef,
+        private _router: Router,
+        private _route: ActivatedRoute,
+    ) { }
 
     public ngOnInit() {
+        const id = this._route.snapshot.params['id'];
+
         cytoscape.use( edgehandles );
 
         this.cy = cytoscape({
             container: this.el.nativeElement.querySelector('#cy'),
 
             elements: [],
-
-            style: [
-                {
-                    selector: 'node[type = "triangle"]',
-                    style: {
-                        'shape': 'rectangle',
-                        'width': '200px',
-                        'height': '100px',
-                        'background-color': '#ffffff',
-                        'label': 'data(label)',
-                        'border-color': '#333',
-                        'border-width': '2px',
-                        'text-valign': 'center',
-                        'text-wrap': 'wrap',
-                        'text-max-width': '140px',
-                        'text-halign': 'center',
-                    }
-                },
-                {
-                    selector: 'node[type = "hexagon"]',
-                    style: {
-                        'shape': 'hexagon',
-                        'width': '200px',
-                        'height': '100px',
-                        'background-color': '#ffffff',
-                        'label': 'data(label)',
-                        'border-color': '#333',
-                        'border-width': '2px',
-                        'text-valign': 'center',
-                        'text-wrap': 'wrap',
-                        'text-max-width': '140px',
-                        'text-halign': 'center',
-                    },
-                },
-                {
-                    selector: 'edge',
-                    style: {
-                        'width': 2,
-                        'line-color': '#ccc',
-                        'target-arrow-color': '#ccc',
-                        'curve-style': 'bezier',
-                        'target-arrow-shape': 'triangle'
-                    },
-                },
-                {
-                    selector: '.eh-hover',
-                    style: {
-                        'background-color': 'blue'
-                    }
-                },
-
-                {
-                    selector: '.eh-source',
-                    style: {
-                        'border-width': 2,
-                        'border-color': 'blue'
-                    }
-                },
-
-                {
-                    selector: '.eh-target',
-                    style: {
-                        'border-width': 2,
-                        'border-color': 'blue'
-                    }
-                },
-
-                {
-                    selector: '.eh-preview, .eh-ghost-edge',
-                    style: {
-                        'background-color': 'blue',
-                        'line-color': 'blue',
-                        'color': 'white',
-                        'target-arrow-color': 'blue',
-                        'source-arrow-color': 'blue',
-                    }
-                },
-
-                {
-                    selector: '.eh-ghost-edge.eh-preview-active',
-                    style: {
-                        'opacity': 0
-                    }
-                }
-            ],
-
-            layout: {
-                name: 'grid',
-            }
+            style: [],
         });
 
         // обращаемся к пользовательскому интерфесу для работы с узлами
         let eh = this.cy.edgehandles();
+        let graphConfig;
+
+        if (Number(id) === 1) {
+            graphConfig = oneGraph;
+        } else {
+            graphConfig = bigGraph;
+        }
+
+
+        graphConfig.elements.nodes.forEach(el => {
+            this.cy.add({
+                group: 'nodes',
+                data: el.data,
+                position: el.position,
+            });
+        })
+
+        graphConfig.elements.edges.forEach(el => {
+            this.cy.add({
+                group: 'edges',
+                data: el.data,
+                position: el.position,
+            });
+        })
+
+        this.cy.style(graphConfig.style);
+
+
 
         this.el.nativeElement.querySelector('#draw-on').addEventListener('click', () => {
             eh.enableDrawMode();
@@ -163,10 +115,53 @@ export class CytoscapeComponent implements OnInit {
 
     public previewSelect(evt: any) {
         this.selectBlock = evt;
+        // console.log(this.selectBlock.target['_private'].data.type);
     }
 
     public closePreview() {
         this.selectBlock = undefined;
+    }
+
+    public selectColor(color: string) {
+        this.selectedColor = color;
+
+        return color;
+    }
+
+    public saveNewStyle() {
+        let id = this.selectBlock.target['_private'].data.id;
+
+        switch (this.selectedColor) {
+
+            case 'yellow':
+
+                if (!this.cy.style().json().find((el: any) => el.selector === '.yellow')) {
+                    this.cy.style()
+                        .selector(`.yellow`)
+                        .style({
+                            'background-color': 'yellow',
+                        }).update();
+                }
+
+                this.cy.getElementById(id).addClass('yellow');
+                break;
+
+            case 'green':
+                if (!this.cy.style().json().find((el: any) => el.selector === '.green')) {
+                    this.cy.style()
+                        .selector(`.green`)
+                        .style({
+                            'background-color': 'green',
+                        }).update();
+                }
+
+                this.cy.getElementById(id).addClass('green');
+
+                break;
+        }
+
+
+        this.openModal = false;
     }
 
     public saveGraph() {
@@ -190,7 +185,5 @@ export class CytoscapeComponent implements OnInit {
             },
             position: {x: x, y: y},
         });
-
-        // this.cy.layout({ name: 'grid' }).run(); // Перераскладка после добавления узла
     }
 }
