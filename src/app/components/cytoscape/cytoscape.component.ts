@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import cytoscape from 'cytoscape';
 import edgehandles from 'cytoscape-edgehandles';
+
 import oneGraph from '../../jsonFiles/config1.json';
 import bigGraph from '../../jsonFiles/config2.json';
-import { ActivatedRoute, Router } from "@angular/router";
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cytoscape',
@@ -13,22 +13,15 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class CytoscapeComponent implements OnInit {
   private cy: any;
-  public id: number = Date.now();
+  public id = Date.now();
   public selectBlock: any = undefined;
-  public drawMode: boolean = false;
-  public typeBlock: string = '';
-  public openModal: boolean = false;
-  public selectedColor: string = '';
-
-  public person: {
-    name: string,
-    age: number,
-    city: string,
-  };
+  public drawMode = false;
+  public typeBlock = '';
+  public openModal = false;
+  public selectedColor = '';
 
   constructor(
     private el: ElementRef,
-    private _router: Router,
     private _route: ActivatedRoute
   ) {}
 
@@ -45,7 +38,7 @@ export class CytoscapeComponent implements OnInit {
     });
 
     // обращаемся к пользовательскому интерфесу для работы с узлами
-    let eh = this.cy.edgehandles();
+    const eh = this.cy.edgehandles();
     let graphConfig;
 
     if (Number(id) === 1) {
@@ -114,9 +107,9 @@ export class CytoscapeComponent implements OnInit {
         pos.y,
         `${(this.id += 1)}`,
         {
-            name: '',
-            age: 0,
-            city: '',
+          name: '',
+          age: 0,
+          city: '',
         },
         this.typeBlock
       );
@@ -138,7 +131,7 @@ export class CytoscapeComponent implements OnInit {
   }
 
   public saveNewStyle() {
-    let id = this.selectBlock._private.data.id;
+    const id = this.selectBlock._private.data.id;
 
     switch (this.selectedColor) {
       case 'yellow':
@@ -171,8 +164,8 @@ export class CytoscapeComponent implements OnInit {
             .style()
             .selector(`.green`)
             .style({
-                'color': 'white',
-                'background-color': 'green',
+              color: 'white',
+              'background-color': 'green',
             })
             .update();
         }
@@ -191,7 +184,7 @@ export class CytoscapeComponent implements OnInit {
             .style()
             .selector(`.blue`)
             .style({
-              'color': 'white',
+              color: 'white',
               'background-color': 'blue',
             })
             .update();
@@ -238,24 +231,24 @@ export class CytoscapeComponent implements OnInit {
         this.cy.getElementById(id).classes('amber');
         break;
 
-        case 'pink':
-            if (
-              !this.cy
-                .style()
-                .json()
-                .find((el: any) => el.selector === '.pink')
-            ) {
-              this.cy
-                .style()
-                .selector(`.pink`)
-                .style({
-                  'background-color': 'pink',
-                })
-                .update();
-            }
-    
-            this.cy.getElementById(id).classes('pink');
-            break;
+      case 'pink':
+        if (
+          !this.cy
+            .style()
+            .json()
+            .find((el: any) => el.selector === '.pink')
+        ) {
+          this.cy
+            .style()
+            .selector(`.pink`)
+            .style({
+              'background-color': 'pink',
+            })
+            .update();
+        }
+
+        this.cy.getElementById(id).classes('pink');
+        break;
 
       case 'white':
         this.cy.getElementById(id).classes('');
@@ -266,8 +259,10 @@ export class CytoscapeComponent implements OnInit {
   }
 
   public funcOpenModal() {
-    this.selectedColor = this.cy.getElementById(this.selectBlock._private.data.id).classes()[0];
-    this.openModal = true
+    this.selectedColor = this.cy
+      .getElementById(this.selectBlock._private.data.id)
+      .classes()[0];
+    this.openModal = true;
   }
 
   public saveGraph() {
