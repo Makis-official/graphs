@@ -20,6 +20,12 @@ export class CytoscapeComponent implements OnInit {
   public openModal: boolean = false;
   public selectedColor: string = '';
 
+  public person: {
+    name: string,
+    age: number,
+    city: string,
+  };
+
   constructor(
     private el: ElementRef,
     private _router: Router,
@@ -79,7 +85,7 @@ export class CytoscapeComponent implements OnInit {
       });
 
     this.cy.on('click', 'node', (evt: any) => {
-      this.previewSelect(evt);
+      this.previewSelect(evt.target);
     });
 
     this.cy.on('dblclick', 'edge', (evt: any) => {
@@ -108,8 +114,9 @@ export class CytoscapeComponent implements OnInit {
         pos.y,
         `${(this.id += 1)}`,
         {
-          name: 'Nikita',
-          date: Date.now().toString(),
+            name: '',
+            age: 0,
+            city: '',
         },
         this.typeBlock
       );
@@ -118,7 +125,6 @@ export class CytoscapeComponent implements OnInit {
 
   public previewSelect(evt: any) {
     this.selectBlock = evt;
-    // console.log(this.selectBlock.target['_private'].data.type);
   }
 
   public closePreview() {
@@ -132,7 +138,7 @@ export class CytoscapeComponent implements OnInit {
   }
 
   public saveNewStyle() {
-    let id = this.selectBlock.target['_private'].data.id;
+    let id = this.selectBlock._private.data.id;
 
     switch (this.selectedColor) {
       case 'yellow':
@@ -165,7 +171,8 @@ export class CytoscapeComponent implements OnInit {
             .style()
             .selector(`.green`)
             .style({
-              'background-color': 'green',
+                'color': 'white',
+                'background-color': 'green',
             })
             .update();
         }
@@ -184,6 +191,7 @@ export class CytoscapeComponent implements OnInit {
             .style()
             .selector(`.blue`)
             .style({
+              'color': 'white',
               'background-color': 'blue',
             })
             .update();
@@ -222,7 +230,7 @@ export class CytoscapeComponent implements OnInit {
             .style()
             .selector(`.amber`)
             .style({
-              'background-color': 'amber',
+              'background-color': 'orange',
             })
             .update();
         }
@@ -257,12 +265,17 @@ export class CytoscapeComponent implements OnInit {
     this.openModal = false;
   }
 
+  public funcOpenModal() {
+    this.selectedColor = this.cy.getElementById(this.selectBlock._private.data.id).classes()[0];
+    this.openModal = true
+  }
+
   public saveGraph() {
     console.log(this.cy.json());
   }
 
   public removeSelected(evt: any) {
-    evt.target.toggleClass('selected');
+    evt.toggleClass('selected');
     this.cy.$('.selected').remove();
     this.closePreview();
   }

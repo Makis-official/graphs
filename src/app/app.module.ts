@@ -8,6 +8,7 @@ import { CytoscapeComponent } from './components/cytoscape/cytoscape.component';
 import { LogicFlowComponent } from './components/logic-flow/logic-flow.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        FormsModule,
     ],
     providers: [
     ],

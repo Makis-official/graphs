@@ -7,7 +7,8 @@
           "type": "triangle",
           "info": {
             "name": "Андрей",
-            "date": "04.03.1999"
+            "age": 23,
+            "city": "Питер"
           },
           "label": "101"
         },
@@ -29,8 +30,9 @@
           "id": "102",
           "type": "triangle",
           "info": {
-            "name": "Алексей",
-            "date": "11.06.1986"
+            "name": "Андрей",
+            "age": 23,
+            "city": "Питер"
           },
           "label": "102"
         },
@@ -52,8 +54,9 @@
           "id": "103",
           "type": "hexagon",
           "info": {
-            "name": "Nikita",
-            "date": "1729144747203"
+            "name": "Андрей",
+            "age": 23,
+            "city": "Питер"
           },
           "label": "103"
         },
@@ -75,8 +78,9 @@
           "id": "104",
           "type": "triangle",
           "info": {
-            "name": "Nikita",
-            "date": "1729144749444"
+            "name": "Андрей",
+            "age": 23,
+            "city": "Питер"
           },
           "label": "104"
         },
@@ -98,8 +102,9 @@
           "id": "105",
           "type": "triangle",
           "info": {
-            "name": "Nikita",
-            "date": "1729144753814"
+            "name": "Андрей",
+            "age": 23,
+            "city": "Питер"
           },
           "label": "105"
         },
@@ -121,8 +126,9 @@
           "id": "106",
           "type": "hexagon",
           "info": {
-            "name": "Nikita",
-            "date": "1729144758678"
+            "name": "Андрей",
+            "age": 23,
+            "city": "Питер"
           },
           "label": "106"
         },
@@ -144,8 +150,9 @@
           "id": "107",
           "type": "triangle",
           "info": {
-            "name": "Nikita",
-            "date": "1729144787672"
+            "name": "Андрей",
+            "age": 23,
+            "city": "Питер"
           },
           "label": "107"
         },
