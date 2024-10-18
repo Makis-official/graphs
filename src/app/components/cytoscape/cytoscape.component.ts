@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import cytoscape from 'cytoscape';
 import edgehandles from 'cytoscape-edgehandles';
+import { ActivatedRoute } from '@angular/router';
 
 import oneGraph from '../../jsonFiles/config1.json';
 import bigGraph from '../../jsonFiles/config2.json';
-import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-cytoscape',
@@ -266,7 +267,10 @@ export class CytoscapeComponent implements OnInit {
   }
 
   public saveGraph() {
+    // Весь граф
     console.log(this.cy.json());
+    // элементы графа в виде массива
+    console.log(this.cy.elements().jsons());
   }
 
   public removeSelected(evt: any) {
