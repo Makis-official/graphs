@@ -64,47 +64,55 @@
             <div *ngIf="!!selectBlock" class="w-1/6 pr-4 rounded-md flex justify-between flex-col">
 
                 <div>
-                <div class="flex justify-between gap-2">
-                    <p class="my-auto font-medium text-lg">{{selectBlock._private.data.id}}</p>
+                    <div class="flex justify-between gap-2">
+                        <p class="my-auto font-medium text-lg">{{selectBlock._private.data.id}}</p>
 
-                    <button (click)="closePreview()" type="button"
-                        class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
-                        <span class="sr-only">Close menu</span>
+                        <button (click)="closePreview()" type="button"
+                                class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
+                            <span class="sr-only">Close menu</span>
 
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="w-full">
-                    <div class="mt-2">
-                        <p>Имя</p>
-                        <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text" [(ngModel)]="selectBlock._private.data.info.name">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
                     </div>
 
-                    <div class="mt-2">
-                        <p>Возраст</p>
-                        <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text" [(ngModel)]="selectBlock._private.data.info.age">
-                    </div>
+                    <div class="w-full">
+                        <div class="mt-2">
+                            <p>Имя</p>
+                            <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text"
+                                   [(ngModel)]="selectBlock._private.data.info.name">
+                        </div>
 
-                    <div class="mt-2">
-                        <p>Город</p>
-                        <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text" [(ngModel)]="selectBlock._private.data.info.city">
+                        <div class="mt-2">
+                            <p>Возраст</p>
+                            <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text"
+                                   [(ngModel)]="selectBlock._private.data.info.age">
+                        </div>
+
+                        <div class="mt-2">
+                            <p>Город</p>
+                            <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text"
+                                   [(ngModel)]="selectBlock._private.data.info.city">
+                        </div>
                     </div>
-                </div>                    
                 </div>
 
 
                 <div class="flex justify-between mt-24 ">
                     <button (click)="funcOpenModal()"
-                        class="rounded-[8px] px-4 py-1  border-[#0D4CD3] border-2 text-[#0D4CD3] cursor-pointer w-max">Изменить
-                        цвет узла</button>
-                    <svg (click)="removeSelected(selectBlock)" class="my-auto cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.99782 5.33184C8.20421 3.9903 9.35852 3 10.7158 3H13.2842C14.6415 3 15.7958 3.99031 16.0022 5.33184L16.105 5.99996H17.4955H19L19 6H20V7.5H18.8833L18.0486 18.2326C17.9271 19.7945 16.6242 21 15.0576 21H8.94239C7.37576 21 6.07291 19.7945 5.95143 18.2326L5.11667 7.5H4V6H5L5 5.99996H6.50453H7.89503L7.99782 5.33184ZM14.5873 5.99996H9.41268L9.48037 5.55993C9.57419 4.95014 10.0989 4.5 10.7158 4.5H13.2842C13.9011 4.5 14.4258 4.95014 14.5196 5.55993L14.5873 5.99996ZM6.6212 7.5L7.44691 18.1163C7.50765 18.8972 8.15908 19.5 8.94239 19.5H15.0576C15.8409 19.5 16.4923 18.8972 16.5531 18.1163L17.3788 7.5L6.6212 7.5Z" fill="#0D4CD3"/>
-                        </svg>
+                            class="rounded-[8px] px-4 py-1  border-[#0D4CD3] border-2 text-[#0D4CD3] cursor-pointer w-max">
+                        Изменить
+                        цвет узла
+                    </button>
+                    <svg (click)="removeSelected(selectBlock)" class="my-auto cursor-pointer" width="24" height="24"
+                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M7.99782 5.33184C8.20421 3.9903 9.35852 3 10.7158 3H13.2842C14.6415 3 15.7958 3.99031 16.0022 5.33184L16.105 5.99996H17.4955H19L19 6H20V7.5H18.8833L18.0486 18.2326C17.9271 19.7945 16.6242 21 15.0576 21H8.94239C7.37576 21 6.07291 19.7945 5.95143 18.2326L5.11667 7.5H4V6H5L5 5.99996H6.50453H7.89503L7.99782 5.33184ZM14.5873 5.99996H9.41268L9.48037 5.55993C9.57419 4.95014 10.0989 4.5 10.7158 4.5H13.2842C13.9011 4.5 14.4258 4.95014 14.5196 5.55993L14.5873 5.99996ZM6.6212 7.5L7.44691 18.1163C7.50765 18.8972 8.15908 19.5 8.94239 19.5H15.0576C15.8409 19.5 16.4923 18.8972 16.5531 18.1163L17.3788 7.5L6.6212 7.5Z"
+                              fill="#0D4CD3"/>
+                    </svg>
                 </div>
             </div>
         </div>

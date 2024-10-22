@@ -9,6 +9,7 @@ import { LogicFlowComponent } from './components/logic-flow/logic-flow.component
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
         HttpClientModule,
         BrowserAnimationsModule,
         FormsModule,
+        NgOptimizedImage,
     ],
     providers: [
     ],
