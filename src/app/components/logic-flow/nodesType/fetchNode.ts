@@ -11,7 +11,7 @@ class fetchNode extends RectNode {
             height: 30,
             x: - width / 2,
             y: - height / 2,
-            href: 'components/logic-flow/images/fetch.svg'
+            href: '../assets/images/circle.svg'
         });
     }
 }

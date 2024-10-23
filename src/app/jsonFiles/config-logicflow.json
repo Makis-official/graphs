@@ -1,376 +1,228 @@
 {
-  "nodes": [
-    {
-      "id": 1,
-      "type": "rect",
-      "x": 745,
-      "y": 128,
-      "properties": {
-        "width": 100,
-        "height": 80
-      },
-      "text": {
-        "x": 745,
-        "y": 128,
-        "value": "квадрат"
-      }
-    },
-    {
-      "id": 2,
-      "type": "circle",
-      "x": 1160,
-      "y": 231,
-      "properties": {
-        "width": 100,
-        "height": 100
-      },
-      "text": {
-        "x": 1160,
-        "y": 231,
-        "value": "круг"
-      }
-    },
-    {
-      "id": "kk2cgdli",
-      "type": "circle-node",
-      "x": 461,
-      "y": 231,
-      "properties": {
-        "width": 80,
-        "height": 80
-      },
-      "text": {
-        "x": 461,
-        "y": 231,
-        "value": "круг"
-      }
-    },
-    {
-      "id": "eec9n2s5",
-      "type": "circle-node",
-      "x": 745,
-      "y": 322,
-      "properties": {
-        "width": 80,
-        "height": 80
-      },
-      "text": {
-        "x": 745,
-        "y": 322,
-        "value": "круг"
-      }
-    },
-    {
-      "id": "1h21xnjl",
-      "type": "fetch-node",
-      "x": 395,
-      "y": 389,
-      "properties": {
-        "width": 200,
-        "height": 80
-      },
-      "text": {
-        "x": 395,
-        "y": 389,
-        "value": "Прямоугольник большой"
-      }
-    },
-    {
-      "id": "ixddkud6",
-      "type": "diamond",
-      "x": 659,
-      "y": 492,
-      "properties": {
-        "width": 60,
-        "height": 100
-      },
-      "text": {
-        "x": 659,
-        "y": 492,
-        "value": "ромб"
-      }
-    },
-    {
-      "id": "av6nys6o",
-      "type": "fetch-node",
-      "x": 973,
-      "y": 392,
-      "properties": {
-        "width": 200,
-        "height": 80
-      },
-      "text": {
-        "x": 973,
-        "y": 392,
-        "value": "Прямоугольник большой"
-      }
-    }
-  ],
-  "edges": [
-    {
-      "id": "d914546d-7699-489f-92fb-11774657057f",
-      "type": "polyline",
-      "properties": {},
-      "sourceNodeId": 1,
-      "targetNodeId": 2,
-      "startPoint": {
-        "x": 795,
-        "y": 128
-      },
-      "endPoint": {
-        "x": 1160,
-        "y": 181
-      },
-      "pointsList": [
+    "nodes": [
         {
-          "x": 795,
-          "y": 128
+            "id": 1,
+            "type": "rect",
+            "x": 744,
+            "y": 113,
+            "properties": {
+                "width": 100,
+                "height": 80
+            },
+            "text": {
+                "x": 744,
+                "y": 113,
+                "value": "квадрат"
+            }
         },
         {
-          "x": 1160,
-          "y": 128
+            "id": "kk2cgdli",
+            "type": "circle-node",
+            "x": 574,
+            "y": 222,
+            "properties": {
+                "width": 80,
+                "height": 80,
+                "style": {
+                    "fill": "rgb(213, 232, 212)",
+                    "stroke": "rgb(130, 179, 102)",
+                    "strokeWidth": 2
+                }
+            },
+            "text": {
+                "x": 574,
+                "y": 222,
+                "value": "круг"
+            }
         },
         {
-          "x": 1160,
-          "y": 181
+            "id": "eec9n2s5",
+            "type": "circle-node",
+            "x": 883,
+            "y": 279,
+            "properties": {
+                "width": 80,
+                "height": 80
+            },
+            "text": {
+                "x": 883,
+                "y": 279,
+                "value": "круг"
+            }
+        },
+        {
+            "id": "ixddkud6",
+            "type": "diamond",
+            "x": 750,
+            "y": 499,
+            "properties": {
+                "width": 60,
+                "height": 100
+            },
+            "text": {
+                "x": 750,
+                "y": 499,
+                "value": "ромб"
+            }
         }
-      ]
-    },
-    {
-      "id": "Flow_5d7fd1b",
-      "type": "bpmn:sequenceFlow",
-      "properties": {},
-      "sourceNodeId": 1,
-      "targetNodeId": "kk2cgdli",
-      "startPoint": {
-        "x": 695,
-        "y": 128
-      },
-      "endPoint": {
-        "x": 461,
-        "y": 191
-      },
-      "pointsList": [
+    ],
+    "edges": [
         {
-          "x": 695,
-          "y": 128
+            "id": "Flow_5d7fd1b",
+            "type": "bpmn:sequenceFlow",
+            "properties": {},
+            "sourceNodeId": 1,
+            "targetNodeId": "kk2cgdli",
+            "startPoint": {
+                "x": 694,
+                "y": 113
+            },
+            "endPoint": {
+                "x": 574,
+                "y": 182
+            },
+            "pointsList": [
+                {
+                    "x": 694,
+                    "y": 113
+                },
+                {
+                    "x": 574,
+                    "y": 113
+                },
+                {
+                    "x": 574,
+                    "y": 182
+                }
+            ]
         },
         {
-          "x": 461,
-          "y": 128
+            "id": "Flow_5c37d3b",
+            "type": "bpmn:sequenceFlow",
+            "properties": {},
+            "sourceNodeId": 1,
+            "targetNodeId": "eec9n2s5",
+            "startPoint": {
+                "x": 744,
+                "y": 153
+            },
+            "endPoint": {
+                "x": 883,
+                "y": 239
+            },
+            "pointsList": [
+                {
+                    "x": 744,
+                    "y": 153
+                },
+                {
+                    "x": 744,
+                    "y": 209
+                },
+                {
+                    "x": 883,
+                    "y": 209
+                },
+                {
+                    "x": 883,
+                    "y": 239
+                }
+            ]
         },
         {
-          "x": 461,
-          "y": 191
+            "id": "Flow_0ce2376",
+            "type": "bpmn:sequenceFlow",
+            "properties": {},
+            "sourceNodeId": "eec9n2s5",
+            "targetNodeId": "ixddkud6",
+            "startPoint": {
+                "x": 843,
+                "y": 279
+            },
+            "endPoint": {
+                "x": 750,
+                "y": 449
+            },
+            "pointsList": [
+                {
+                    "x": 843,
+                    "y": 279
+                },
+                {
+                    "x": 750,
+                    "y": 279
+                },
+                {
+                    "x": 750,
+                    "y": 449
+                }
+            ]
+        },
+        {
+            "id": "4e365d54-a412-41cd-9c77-75fe52a80d59",
+            "type": "bezier",
+            "properties": {},
+            "sourceNodeId": "kk2cgdli",
+            "targetNodeId": 1,
+            "startPoint": {
+                "x": 614,
+                "y": 222
+            },
+            "endPoint": {
+                "x": 694,
+                "y": 113
+            },
+            "pointsList": [
+                {
+                    "x": 614,
+                    "y": 222
+                },
+                {
+                    "x": 724,
+                    "y": 207
+                },
+                {
+                    "x": 591,
+                    "y": 141
+                },
+                {
+                    "x": 694,
+                    "y": 113
+                }
+            ]
+        },
+        {
+            "id": "d2d4c4f9-7183-432f-8cab-8433882c2942",
+            "type": "bezier",
+            "properties": {},
+            "sourceNodeId": "kk2cgdli",
+            "targetNodeId": "ixddkud6",
+            "startPoint": {
+                "x": 574,
+                "y": 262
+            },
+            "endPoint": {
+                "x": 720,
+                "y": 499
+            },
+            "pointsList": [
+                {
+                    "x": 574,
+                    "y": 262
+                },
+                {
+                    "x": 686,
+                    "y": 335
+                },
+                {
+                    "x": 551.671875,
+                    "y": 497
+                },
+                {
+                    "x": 720,
+                    "y": 499
+                }
+            ]
         }
-      ]
-    },
-    {
-      "id": "Flow_5c37d3b",
-      "type": "bpmn:sequenceFlow",
-      "properties": {},
-      "sourceNodeId": 1,
-      "targetNodeId": "eec9n2s5",
-      "startPoint": {
-        "x": 745,
-        "y": 168
-      },
-      "endPoint": {
-        "x": 745,
-        "y": 282
-      },
-      "pointsList": [
-        {
-          "x": 745,
-          "y": 168
-        },
-        {
-          "x": 745,
-          "y": 282
-        }
-      ]
-    },
-    {
-      "id": "Flow_a6f66f2",
-      "type": "bpmn:sequenceFlow",
-      "properties": {},
-      "sourceNodeId": "eec9n2s5",
-      "targetNodeId": 2,
-      "startPoint": {
-        "x": 785,
-        "y": 322
-      },
-      "endPoint": {
-        "x": 1110,
-        "y": 231
-      },
-      "pointsList": [
-        {
-          "x": 785,
-          "y": 322
-        },
-        {
-          "x": 815,
-          "y": 322
-        },
-        {
-          "x": 815,
-          "y": 231
-        },
-        {
-          "x": 1110,
-          "y": 231
-        }
-      ]
-    },
-    {
-      "id": "Flow_fb33ae4",
-      "type": "bpmn:sequenceFlow",
-      "properties": {},
-      "sourceNodeId": "kk2cgdli",
-      "targetNodeId": "1h21xnjl",
-      "startPoint": {
-        "x": 461,
-        "y": 271
-      },
-      "endPoint": {
-        "x": 395,
-        "y": 349
-      },
-      "pointsList": [
-        {
-          "x": 461,
-          "y": 271
-        },
-        {
-          "x": 461,
-          "y": 310
-        },
-        {
-          "x": 395,
-          "y": 310
-        },
-        {
-          "x": 395,
-          "y": 349
-        }
-      ]
-    },
-    {
-      "id": "Flow_0ce2376",
-      "type": "bpmn:sequenceFlow",
-      "properties": {},
-      "sourceNodeId": "eec9n2s5",
-      "targetNodeId": "ixddkud6",
-      "startPoint": {
-        "x": 705,
-        "y": 322
-      },
-      "endPoint": {
-        "x": 659,
-        "y": 442
-      },
-      "pointsList": [
-        {
-          "x": 705,
-          "y": 322
-        },
-        {
-          "x": 659,
-          "y": 322
-        },
-        {
-          "x": 659,
-          "y": 442
-        }
-      ]
-    },
-    {
-      "id": "Flow_fa8a72c",
-      "type": "bpmn:sequenceFlow",
-      "properties": {},
-      "sourceNodeId": "ixddkud6",
-      "targetNodeId": "1h21xnjl",
-      "startPoint": {
-        "x": 629,
-        "y": 492
-      },
-      "endPoint": {
-        "x": 395,
-        "y": 429
-      },
-      "pointsList": [
-        {
-          "x": 629,
-          "y": 492
-        },
-        {
-          "x": 395,
-          "y": 492
-        },
-        {
-          "x": 395,
-          "y": 429
-        }
-      ]
-    },
-    {
-      "id": "Flow_d307de6",
-      "type": "bpmn:sequenceFlow",
-      "properties": {},
-      "sourceNodeId": "ixddkud6",
-      "targetNodeId": 2,
-      "startPoint": {
-        "x": 689,
-        "y": 492
-      },
-      "endPoint": {
-        "x": 1160,
-        "y": 281
-      },
-      "pointsList": [
-        {
-          "x": 689,
-          "y": 492
-        },
-        {
-          "x": 1160,
-          "y": 492
-        },
-        {
-          "x": 1160,
-          "y": 281
-        }
-      ]
-    },
-    {
-      "id": "Flow_47e52b4",
-      "type": "bpmn:sequenceFlow",
-      "properties": {},
-      "sourceNodeId": "eec9n2s5",
-      "targetNodeId": "av6nys6o",
-      "startPoint": {
-        "x": 745,
-        "y": 362
-      },
-      "endPoint": {
-        "x": 873,
-        "y": 392
-      },
-      "pointsList": [
-        {
-          "x": 745,
-          "y": 362
-        },
-        {
-          "x": 745,
-          "y": 392
-        },
-        {
-          "x": 873,
-          "y": 392
-        }
-      ]
-    }
-  ]
+    ]
 }
