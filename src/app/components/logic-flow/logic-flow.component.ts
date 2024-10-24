@@ -136,13 +136,9 @@ export class LogicFlowComponent implements OnInit {
 
         this.lf.on('node:click', (data) => {
             this.selectBlock = data.data;
+            this.resetInformation();
             console.log(this.selectBlock)
-
-            if (this.selectBlock.properties.information) {
-                this.personInf = this.selectBlock.properties;
-            } else {
-                this.resetInformation();
-            }
+            //
         });
 
         this.lf.extension.menu.setMenuConfig({
@@ -230,10 +226,6 @@ export class LogicFlowComponent implements OnInit {
         this.selectBlock = undefined;
     }
 
-    public log(inf: any) {
-        console.log(inf)
-    }
-
     public resetGraph() {
         this.lf.resetZoom();
         this.lf.resetTranslate();
@@ -247,10 +239,11 @@ export class LogicFlowComponent implements OnInit {
     }
 
     public saveInf() {
-        // this.resetSelectColor();
-        // console.log(this.selectBlock)
+        this.resetSelectColor();
+        if (this.selectBlock.properties.information) {
+            this.personInf['information'] = this.selectBlock.properties.information;
+        }
         this.lf.setProperties(this.selectBlock.id, this.personInf);
-        console.log(this.selectBlock)
     }
 
     public exportJson() {
@@ -262,6 +255,7 @@ export class LogicFlowComponent implements OnInit {
     }
 
     public saveNewStyle() {
+        this.selectBlock.properties['style'] = this.selectedColor.style;
         this.lf.setProperties(this.selectBlock.id, this.selectedColor);
 
         this.openModal = false;

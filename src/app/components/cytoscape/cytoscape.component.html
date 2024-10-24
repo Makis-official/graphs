@@ -66,7 +66,7 @@
                     </div>
 
 
-                    <div *ngIf="!!selectBlock" class="absolute right-4 top-4 z-30 w-1/6 p-4 rounded-md flex bg-white shadow-md justify-between flex-col">
+                    <div *ngIf="!!selectBlock" class="absolute right-4 top-4 z-30 w-[250px] p-4 rounded-md flex bg-white shadow-md justify-between flex-col">
 
                         <div>
                             <div class="flex justify-between gap-2">
@@ -109,8 +109,7 @@
                         <div class="flex justify-between mt-24 ">
                             <button (click)="funcOpenModal()"
                                     class="rounded-[8px] px-4 py-1  border-[#0D4CD3] border-2 text-[#0D4CD3] cursor-pointer w-max">
-                                Изменить
-                                цвет узла
+                                Изменить цвет узла
                             </button>
                             <svg (click)="removeSelected(selectBlock)" class="my-auto cursor-pointer" width="24" height="24"
                                  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

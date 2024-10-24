@@ -99,7 +99,6 @@ export class CytoscapeComponent implements OnInit {
 
         this.el.nativeElement.addEventListener('drop', (event: any) => {
             event.preventDefault();
-            console.log(event);
             const rect = this.el.nativeElement.getBoundingClientRect();
             const pos = {
                 x: event.clientX - rect.left,
@@ -273,8 +272,6 @@ export class CytoscapeComponent implements OnInit {
         console.log(this.cy.json());
         // элементы графа в виде массива
         console.log(this.cy.elements().jsons());
-
-        this.cy.jpg();
     }
 
     public removeSelected(evt: any, edge: boolean = false) {
