@@ -8,7 +8,6 @@ class circleNodeModel extends RectNodeModel {
         this.width = 80;
         this.height = 80;
         this.radius = 50;
-        this.color = 'red';
         // this.text.editable = false;
         this.inputData = this.text.value
     }

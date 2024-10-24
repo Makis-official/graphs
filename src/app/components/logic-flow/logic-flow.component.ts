@@ -1,10 +1,21 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
 import LogicFlow from '@logicflow/core';
-import {Menu, DndPanel, SelectionSelect, BpmnElement, Snapshot, MiniMap} from '@logicflow/extension'
+import {
+    Menu,
+    DndPanel,
+    SelectionSelect,
+    BpmnElement,
+    Snapshot,
+    MiniMap} from '@logicflow/extension'
+
+import oneGraph from '../../jsonFiles/config-logicflow.json';
+
 import fetchNode from './nodesType/fetchNode'
 import circleNode from "./nodesType/circleNode";
 import fetchNodeSmall from "./nodesType/fetchNodeSmall";
-import oneGraph from '../../jsonFiles/config-logicflow.json';
 
 @Component({
     selector: 'app-logic-flow',
@@ -18,12 +29,25 @@ export class LogicFlowComponent implements OnInit {
     public openModal = false;
     public selectBlock: any = undefined;
     public personInf: any = {
-        information: {
-            name: '',
-            age: '',
-            city: '',
-        }
-    }
+        information: [
+            {
+                key: 'name',
+                text: 'Имя',
+                value: '',
+            },
+            {
+                key: 'age',
+                text: 'Возраст',
+                value: '',
+            },
+            {
+                key: 'city',
+                text: 'Город',
+                value: '',
+            },
+        ],
+    };
+
     public lf: any;
     public selectedColor: any = {
         style: {
@@ -68,11 +92,6 @@ export class LogicFlowComponent implements OnInit {
             }
         }
     ];
-
-    constructor(private el: ElementRef,) {
-    }
-
-
     public baseNodes = [
         {
             type: 'fetch-node',
@@ -88,15 +107,15 @@ export class LogicFlowComponent implements OnInit {
         },
         {
             type: 'circle-node',
-            text: 'круг',
+            text: 'Окружность',
             background: 'bg-blue-50',
             icon: './assets/images/circle.svg'
         },
         {
             type: 'diamond',
-            text: 'ромб',
+            text: 'Ромб',
             // color: 'white',
-            // background: 'blue',
+            background: 'bg-blue-50',
             icon: './assets/images/diamond.svg'
         },
     ];
@@ -109,16 +128,22 @@ export class LogicFlowComponent implements OnInit {
             },
             container: document.querySelector('#container')!,
             // grid: true,
-            plugins: [BpmnElement, Menu, Snapshot, MiniMap, DndPanel, SelectionSelect, Snapshot],
+            plugins: [BpmnElement, Menu, MiniMap, DndPanel, SelectionSelect, Snapshot],
             pluginsOptions: {
                 miniMap: {},
             },
         });
 
         this.lf.on('node:click', (data) => {
-            console.log(data.data)
             this.selectBlock = data.data;
-        })
+            console.log(this.selectBlock)
+
+            if (this.selectBlock.properties.information) {
+                this.personInf = this.selectBlock.properties;
+            } else {
+                this.resetInformation();
+            }
+        });
 
         this.lf.extension.menu.setMenuConfig({
             nodeMenu: [
@@ -127,12 +152,12 @@ export class LogicFlowComponent implements OnInit {
                     text: "Изменить цвет",
                     icon: true,
                     callback: (node: any) => {
-                        // console.log(node)
                         this.selectBlock = node;
-                        if (node.properties.style) {
-                            this.selectedColor = node.properties
-                        }
                         this.openModal = true;
+
+                        node.properties.style
+                            ? this.selectedColor = node.properties
+                            : this.resetSelectColor();
                     }
                 },
                 {
@@ -149,39 +174,45 @@ export class LogicFlowComponent implements OnInit {
                     text: "тест меню связи",
                     callback(edge: any) {
                         alert(`
-          id：${edge.id}
-          тип линии：${edge.type}
-          координаты：(x: ${edge.x}, y: ${edge.y})
-          sourceNodeId：${edge.sourceNodeId}
-          targetNodeId：${edge.targetNodeId}`);
+                          id：${edge.id}
+                          тип линии：${edge.type}
+                          координаты：(x: ${edge.x}, y: ${edge.y})
+                          sourceNodeId：${edge.sourceNodeId}
+                          targetNodeId：${edge.targetNodeId}
+                        `);
+                    }
+                },
+                {
+                    text: "Удалить связь",
+                    callback: (edge: any) => {
+                        this.lf.deleteEdge(edge.id);
                     }
                 }
             ],
             graphMenu: [
                 {
-                    text: 'руддщ',
+                    text: 'меню всего графа',
                     callback() {
-                        alert('руддщ！')
+                        alert('меню всего графа！')
                     },
                 },
             ],
         });
 
+        // this.lf.setDefaultEdgeType('bezier');
         this.lf.register(fetchNode);
         this.lf.register(circleNode);
         this.lf.register(fetchNodeSmall);
         this.lf.render(oneGraph);
-
-        this.lf.setDefaultEdgeType('bezier');
     }
 
     public downloadScreen() {
         this.lf.extension.snapshot.customCssRules = `
-    .lf-canvas-overlay {
-      background: #EEF5FF;
-    }`;
+            .lf-canvas-overlay {
+            background: #ffffff;
+            }`;
 
-        this.lf.getSnapshot();
+        this.lf.getSnapshot('exportScrin', { fileType: 'png' });
     }
 
     public mouseDown(data: any) {
@@ -199,20 +230,27 @@ export class LogicFlowComponent implements OnInit {
         this.selectBlock = undefined;
     }
 
+    public log(inf: any) {
+        console.log(inf)
+    }
+
     public resetGraph() {
         this.lf.resetZoom();
         this.lf.resetTranslate();
     }
 
+    public selectBlocks() {
+        this.lf.openSelectionSelect();
+        this.lf.once("selection:selected", () => {
+            this.lf.closeSelectionSelect();
+        });
+    }
+
     public saveInf() {
+        // this.resetSelectColor();
+        // console.log(this.selectBlock)
         this.lf.setProperties(this.selectBlock.id, this.personInf);
-        this.personInf = {
-            information: {
-                name: '',
-                age: '',
-                city: '',
-            }
-        }
+        console.log(this.selectBlock)
     }
 
     public exportJson() {
@@ -224,14 +262,23 @@ export class LogicFlowComponent implements OnInit {
     }
 
     public saveNewStyle() {
-
         this.lf.setProperties(this.selectBlock.id, this.selectedColor);
+
         this.openModal = false;
-        this.selectedColor = {
-            style: {
-                fill: 'white'
-            }
-        }
+        this.resetSelectColor();
     }
 
+    public resetSelectColor() {
+        this.selectedColor = {
+            style: {
+                fill: 'white',
+            },
+        };
+    }
+
+    public resetInformation() {
+        this.personInf.information.forEach(el => {
+            el.value = '';
+        });
+    }
 }
