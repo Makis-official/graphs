@@ -1,0 +1,198 @@
+<link href="https://cdn.jsdelivr.net/npm/@logicflow/core@1.2.27/dist/style/index.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@logicflow/extension@1.2.27/lib/style/index.css" />
+
+<div class="h-dvh bg-blue-50">
+
+    <div class="w-full m-auto pl-4 pt-4">
+        <div routerLink="../" class="flex gap-2 cursor-pointer">
+            <svg class="my-auto" xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10"
+                 fill="none">
+                <path d="M6 1.0125L4.99063 2.18147e-07L-2.18557e-07 5L4.99062 10L6 8.9875L2.02187 5L6 1.0125Z"
+                      fill="#0D4CD3"/>
+            </svg>
+            <span class="text-[#0D4CD3]">Назад</span>
+        </div>
+
+        <div class="flex gap-x-4 mt-6 w-full max-w-full">
+            <div class="w-1/6 rounded-md">
+                <div class="flex justify-between h-full flex-col min-w-[300px]">
+                    <div>
+                        <div *ngFor="let data of baseNodes">
+                            <button
+                                class="draggable drag-label rounded-[8px] bg-white shadow-md px-2 py-3 text-center w-full mb-2 flex gap-x-2 items-center"
+                                (mousedown)="mouseDown(data)" [style]="{ 'background': data.background}">
+                                <img class="icon" ngSrc="{{data.icon}}" alt="" height="17" width="20">
+                                {{ data.text }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <button (click)="exportJson()" class="p-2 bg-[#0D4CD3] rounded-[8px] text-white text-center mb-2">
+                        Экспорт JSON
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full custom-h">
+                <div class="relative custom-h rounded-tl-[20px] shadow-xl" id="container"></div>
+
+                <div class="absolute custom-top-panel z-30 flex flex-col gap-y-[5px]" [ngClass]="selectBlock ? 'custom-left-panel' : 'right-[20px]'">
+                    <button (click)="lf.zoom(true)" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#6B6B6B"
+                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path d="m12.03 5-.018 14"/>
+                            <path d="M5 12h14"/>
+                        </svg>
+                    </button>
+                    <button (click)="lf.zoom(false)" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                        <svg width="20" height="20" fill="none" stroke="#6B6B6B" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.25 12h14"></path>
+                        </svg>
+                    </button>
+
+                    <button (click)="lf.undo()" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                        <svg width="20" height="20" fill="none" stroke="#6B6B6B" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.9 12h18"></path>
+                            <path d="m8.9 18-6-6 6-6"></path>
+                        </svg>
+                    </button>
+                    <button (click)="lf.redo()" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                        <svg width="20" height="20" fill="none" stroke="#6B6B6B" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 12H3"></path>
+                            <path d="m15 6 6 6-6 6"></path>
+                        </svg>
+                    </button>
+
+                    <button (click)="selectBlocks()" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                        <svg class="my-auto" width="18" height="18" fill="none" stroke="#6B6B6B" stroke-linecap="round"
+                             stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 2H2v4h4V2Z"></path>
+                            <path d="M22 18h-4v4h4v-4Z"></path>
+                            <path d="M6 18H2v4h4v-4Z"></path>
+                            <path d="M22 2h-4v4h4V2Z"></path>
+                            <path stroke-dasharray="0.5 2.5" d="M4 18V6"></path>
+                            <path stroke-dasharray="0.5 2.5" d="M20 18V6"></path>
+                            <path stroke-dasharray="0.5 2.5" d="M6 4h12"></path>
+                            <path stroke-dasharray="0.5 2.5" d="M6 20h12"></path>
+                        </svg>
+                    </button>
+
+                    <button (click)="downloadScreen()" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                        <svg width="20" height="20" fill="none" stroke="#6B6B6B" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 6a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6z"></path>
+                            <path d="M8.5 6a2.5 2.5 0 1 0 0 5 2.5 2.5 0 1 0 0-5z"></path>
+                            <path
+                                d="M14.526 12.621 6 22h12.133A3.867 3.867 0 0 0 22 18.133V18c0-.466-.175-.645-.49-.99l-4.03-4.395a2 2 0 0 0-2.954.006z"></path>
+                        </svg>
+                    </button>
+
+                    <button (click)="resetGraph()" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                        <svg fill="#6B6B6B" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path>
+                                <path
+                                    d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43 8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="!!selectBlock" class="w-1/6 pr-4 rounded-md flex justify-between flex-col">
+
+                <div class="flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between gap-2">
+                            <p class="my-auto font-medium text-lg">{{ selectBlock.id }}</p>
+
+                            <button (click)="closePreview()" type="button"
+                                    class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
+                                <span class="sr-only">Close menu</span>
+
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="w-full">
+                            <div *ngFor="let info of personInf.information; let i = index" class="mt-2">
+                                <p>{{info.text}}</p>
+                                <input *ngIf="selectBlock.properties.information else noValue"
+                                       class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]"
+                                       type="text"
+                                       [(ngModel)]="selectBlock.properties.information[i].value"
+                                >
+                                <ng-template #noValue>
+                                    <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]"
+                                           type="text"
+                                           [(ngModel)]="personInf.information[i].value"
+                                    >
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button (click)="saveInf()" class="w-full p-2 bg-[#0D4CD3] rounded-[8px] text-white text-center mb-2">Сохранить</button>
+                </div>
+        </div>
+
+        <div *ngIf="openModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-[600px]">
+
+                <div class="flex justify-between gap-16">
+                    <h2 class="text-xl font-bold">Выберите цвет узла</h2>
+
+                    <button (click)="openModal = false" type="button"
+                            class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
+                        <span class="sr-only">Close menu</span>
+
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <p class="mb-16 font-medium">ID узла: {{ selectBlock.id }}</p>
+
+                <div class="border-b-gray-200 border-2 p-4 rounded-lg flex gap-x-[64px]">
+                    <div class="gap-y-2 grid">
+                        <div *ngFor="let color of styleConfig" class="w-10 h-10 rounded-md cursor-pointer"
+                             [style]="{ 'background': color.style.fill }"
+                             (click)="selectColor(color)">
+                        </div>
+                    </div>
+
+                    <div class="my-auto">
+                        <div id="color-block" [style]="{ 'background' : selectedColor.style.fill }"
+                             class="w-[200px] h-[100px] border-black border-2 text-center align-middle">
+                            <p class="mt-[35px] font-medium">Текущий цвет</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full text-center">
+                    <button (click)="saveNewStyle()"
+                            class="py-2 px-4 bg-[#0D4CD3] rounded-[8px] text-white text-center mt-10">
+                        Применить изменения
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

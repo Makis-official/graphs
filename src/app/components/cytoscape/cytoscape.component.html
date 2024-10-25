@@ -1,0 +1,185 @@
+<div class="h-dvh bg-blue-50">
+
+    <div class="w-full m-auto pl-4 pt-4">
+        <div routerLink="../../" class="flex gap-2 cursor-pointer">
+            <svg class="my-auto" xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10"
+                fill="none">
+                <path d="M6 1.0125L4.99063 2.18147e-07L-2.18557e-07 5L4.99062 10L6 8.9875L2.02187 5L6 1.0125Z"
+                    fill="#0D4CD3" />
+            </svg>
+            <span class="text-[#0D4CD3]">Назад</span>
+        </div>
+
+        <div class="flex gap-x-4 mt-6 w-full max-w-full">
+            <div class="w-1/6 rounded-md">
+                <div class="flex justify-between flex-col h-full min-w-[300px]">
+                    <div>
+                        <div>
+                            <div id="triangle"
+                                class="draggable p-2 bg-[#0D4CD3] rounded-[8px] text-white text-center mb-2"
+                                draggable="true">
+                                Новый узел (Прямоугольник)
+                            </div>
+
+                            <div id="hexagon" class="draggable p-2 bg-[#0D4CD3] rounded-[8px] text-white text-center"
+                                draggable="true">
+                                Новый узел (Шестиугольник)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button (click)="drawMode = true" [disabled]="drawMode"
+                            class="disabled:opacity-20 rounded-[8px] p-2 border-[#0D4CD3] border-2 text-[#0D4CD3] text-center w-full mb-2"
+                            id="draw-on">Вкл рисование связей
+                        </button>
+                        <button (click)="drawMode = false" [disabled]="!drawMode"
+                            class="disabled:opacity-20 rounded-[8px] p-2 border-[#0D4CD3] border-2 text-[#0D4CD3] text-center w-full mb-2"
+                            id="draw-off">Выкл рисование связей
+                        </button>
+
+                        <button (click)="saveGraph()"
+                            class="rounded-[8px] p-2 border-[#0D4CD3] border-2 text-[#0D4CD3] text-center w-full mb-2">Сохранить
+                            граф
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full custom-h">
+                <div id="cy" class="w-full relative custom-h shadow-xl bg-white">
+                    <div class="absolute top-2 left-2 z-30 flex flex-col gap-y-2 bg-white p-2">
+                        <button (click)="zoomFunc(true)" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#6B6B6B"
+                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path d="m12.03 5-.018 14"/>
+                                <path d="M5 12h14"/>
+                            </svg>
+                        </button>
+                        <button (click)="zoomFunc(false)" class="bg-white p-2 rounded-[8px] shadow-md w-fit">
+                            <svg width="20" height="20" fill="none" stroke="#6B6B6B" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.25 12h14"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+
+                    <div *ngIf="!!selectBlock" class="absolute right-4 top-4 z-30 w-[250px] p-4 rounded-md flex bg-white shadow-md justify-between flex-col">
+
+                        <div>
+                            <div class="flex justify-between gap-2">
+                                <p class="my-auto font-medium text-lg">{{selectBlock._private.data.id}}</p>
+
+                                <button (click)="closePreview()" type="button"
+                                        class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
+                                    <span class="sr-only">Close menu</span>
+
+                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="w-full">
+                                <div class="mt-2">
+                                    <p>Имя</p>
+                                    <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text"
+                                           [(ngModel)]="selectBlock._private.data.info.name">
+                                </div>
+
+                                <div class="mt-2">
+                                    <p>Возраст</p>
+                                    <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text"
+                                           [(ngModel)]="selectBlock._private.data.info.age">
+                                </div>
+
+                                <div class="mt-2">
+                                    <p>Город</p>
+                                    <input class="bg-white p-2 w-full border-[#eeeeee] border-[1px] rounded-[4px]" type="text"
+                                           [(ngModel)]="selectBlock._private.data.info.city">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="flex justify-between mt-24 ">
+                            <button (click)="funcOpenModal()"
+                                    class="rounded-[8px] px-4 py-1  border-[#0D4CD3] border-2 text-[#0D4CD3] cursor-pointer w-max">
+                                Изменить цвет узла
+                            </button>
+                            <svg (click)="removeSelected(selectBlock)" class="my-auto cursor-pointer" width="24" height="24"
+                                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M7.99782 5.33184C8.20421 3.9903 9.35852 3 10.7158 3H13.2842C14.6415 3 15.7958 3.99031 16.0022 5.33184L16.105 5.99996H17.4955H19L19 6H20V7.5H18.8833L18.0486 18.2326C17.9271 19.7945 16.6242 21 15.0576 21H8.94239C7.37576 21 6.07291 19.7945 5.95143 18.2326L5.11667 7.5H4V6H5L5 5.99996H6.50453H7.89503L7.99782 5.33184ZM14.5873 5.99996H9.41268L9.48037 5.55993C9.57419 4.95014 10.0989 4.5 10.7158 4.5H13.2842C13.9011 4.5 14.4258 4.95014 14.5196 5.55993L14.5873 5.99996ZM6.6212 7.5L7.44691 18.1163C7.50765 18.8972 8.15908 19.5 8.94239 19.5H15.0576C15.8409 19.5 16.4923 18.8972 16.5531 18.1163L17.3788 7.5L6.6212 7.5Z"
+                                      fill="#0D4CD3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <div *ngIf="openModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-[600px]">
+
+            <div class="flex justify-between gap-16">
+                <h2 class="text-xl font-bold">Выберите цвет узла</h2>
+
+                <button (click)="openModal = false" type="button"
+                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset">
+                    <span class="sr-only">Close menu</span>
+
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <p class="mb-16 font-medium">ID узла: {{selectBlock._private.data.id}}</p>
+
+            <div class="border-b-gray-200 border-2 p-4 flex gap-x-[64px]">
+                <div class="gap-y-2 grid">
+                    <div class="w-10 h-10 bg-white border-black border-2 cursor-pointer" (click)="selectColor('white')">
+                    </div>
+                    <div class="w-10 h-10 bg-blue-600 cursor-pointer" (click)="selectColor('blue')"></div>
+                    <div class="w-10 h-10 bg-red-700 cursor-pointer" (click)="selectColor('red')"></div>
+                    <div class="w-10 h-10 bg-amber-700 cursor-pointer" (click)="selectColor('amber')"></div>
+                    <div class="w-10 h-10 bg-yellow-400 cursor-pointer" (click)="selectColor('yellow')"></div>
+                    <div class="w-10 h-10 bg-green-700 cursor-pointer" (click)="selectColor('green')"></div>
+                    <div class="w-10 h-10 bg-pink-700 cursor-pointer" (click)="selectColor('pink')"></div>
+                </div>
+
+                <div class="my-auto">
+                    <div id="color-block" [ngClass]="{
+                        'bg-blue-600' : selectedColor === 'blue',
+                        'bg-red-700' : selectedColor === 'red',
+                        'bg-amber-700' : selectedColor === 'amber',
+                        'bg-yellow-400' : selectedColor === 'yellow',
+                        'bg-green-700' : selectedColor === 'green',
+                        'bg-pink-700' : selectedColor === 'pink',
+                     }" class="w-[200px] h-[100px] border-black border-2 text-center align-middle">
+                        <p class="mt-[35px] font-medium">Текущий цвет</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full text-center">
+                <button (click)="saveNewStyle()"
+                    class="py-2 px-4 bg-[#0D4CD3] rounded-[8px] text-white text-center mt-10">Применить
+                    изменения</button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+modal-container {
+  &.modal {
+    .modal-content {
+      width: 634px;
+      box-shadow: 0 24px 48px 0 #E6EBF566;
+      border-radius: 12px;
+      padding: 32px;
+      .modal-body{
+        padding: 0 !important;
+        border-bottom: none !important;
+        p{
+          font-size: 16px !important;
+          line-height: 24px !important;
+        }
+        .eq-service--date{
+          hr{
+            padding: 0 24px;
+            border-top: 1px solid #99b1e6;
+          }
+          .eq-service--slots{
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #99B1E6;
+            .eq-service--slots-item{
+              background: #E4ECFD;
+              height: 40px;
+              width: 84px;
+              text-align: center;
+              border-radius: 8px;
+              padding: 8px 10px;
+              cursor: pointer;
+              p{
+                color: #0D4CD3;
+                padding: 0;
+              }
+              &.eq-service--slots-item-active, &:hover{
+                background: #1D5DEB;
+                p{
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+        .btn-primary{
+          margin-top: 24px;
+        }
+      }
+      .modal-header {
+        padding: 0 0 24px 0 !important;
+        border-bottom: 1px solid #99B1E6 !important;
+      }
+
+      .eq-service--list {
+        padding: 24px 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        .eq-service--list-item {
+          padding: 8px 12px 8px 16px;
+          background: #EDF2FE;
+          border-radius: 8px;
+
+          &:hover, &.active {
+            cursor: pointer;
+            background: #1d5deb;
+            color: #fff;
+            transition: .5s;
+          }
+        }
+      }
+    }
+  }
+}
