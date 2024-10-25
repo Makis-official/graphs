@@ -137,8 +137,6 @@ export class LogicFlowComponent implements OnInit {
         this.lf.on('node:click', (data) => {
             this.selectBlock = data.data;
             this.resetInformation();
-            console.log(this.selectBlock)
-            //
         });
 
         this.lf.extension.menu.setMenuConfig({
